@@ -25,6 +25,8 @@ function EditTree(cont, store) {
 
   this.onChange = null
 
+  this.datumCallback = null
+
   this.editFirst = false
 
   this.init()
@@ -100,6 +102,10 @@ EditTree.prototype.cardEditForm = function(datum) {
     this.store.updateTree({})
 
     this.updateHistory()
+
+    if (this.datumCallback) {
+      this.datumCallback(datum)
+    }
   }
 }
 
@@ -205,6 +211,11 @@ EditTree.prototype.setFields = function(fields) {
 EditTree.prototype.setOnChange = function(fn) {
   this.onChange = fn
 
+  return this
+}
+
+EditTree.prototype.setDatumCallback = function (fn) {
+  this.datumCallback = fn
   return this
 }
 
