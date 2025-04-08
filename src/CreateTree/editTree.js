@@ -94,6 +94,7 @@ EditTree.prototype.cardEditForm = function(datum) {
   this.openForm()
 
   function postSubmit(props) {
+    const is_new_rel = props?.new_rel || datum?._new_rel_data
     if (this.addRelativeInstance.is_active) this.addRelativeInstance.onChange(datum)
     else if (!props?.delete) this.openFormWithId(datum.id);
 
@@ -104,6 +105,11 @@ EditTree.prototype.cardEditForm = function(datum) {
     this.updateHistory()
 
     if (this.datumCallback) {
+      if (is_new_rel) {
+        datum["new_rel"] = is_new_rel
+      } else if (props?.delete) {
+        datum["delete"] = true
+      }
       this.datumCallback(datum)
     }
   }

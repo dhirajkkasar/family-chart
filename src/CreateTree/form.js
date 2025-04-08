@@ -48,8 +48,12 @@ export function createForm({datum, store, fields, postSubmit, addRelative, delet
     e.preventDefault()
     const form_data = new FormData(e.target)
     form_data.forEach((v, k) => datum.data[k] = v)
-    if (datum.to_add) delete datum.to_add
-    postSubmit()
+    let new_rel = false
+    if (datum.to_add) {
+      new_rel = true
+      delete datum.to_add
+    }
+    postSubmit({new_rel: new_rel})
   }
 
   function deletePersonWithPostSubmit() {

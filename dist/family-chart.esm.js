@@ -165,8 +165,12 @@ function createForm({datum, store, fields, postSubmit, addRelative, deletePerson
     e.preventDefault();
     const form_data = new FormData(e.target);
     form_data.forEach((v, k) => datum.data[k] = v);
-    if (datum.to_add) delete datum.to_add;
-    postSubmit();
+    let new_rel = false;
+    if (datum.to_add) {
+      new_rel = true;
+      delete datum.to_add;
+    }
+    postSubmit({new_rel: new_rel});
   }
 
   function deletePersonWithPostSubmit() {
@@ -2584,6 +2588,7 @@ EditTree.prototype.cardEditForm = function(datum) {
   this.openForm();
 
   function postSubmit(props) {
+    const is_new_rel = props?.new_rel || datum?._new_rel_data;
     if (this.addRelativeInstance.is_active) this.addRelativeInstance.onChange(datum);
     else if (!props?.delete) this.openFormWithId(datum.id);
 
@@ -2594,6 +2599,11 @@ EditTree.prototype.cardEditForm = function(datum) {
     this.updateHistory();
 
     if (this.datumCallback) {
+      if (is_new_rel) {
+        datum["new_rel"] = is_new_rel;
+      } else if (props?.delete) {
+        datum["delete"] = true;
+      }
       this.datumCallback(datum);
     }
   }
