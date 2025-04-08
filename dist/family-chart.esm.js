@@ -2600,7 +2600,7 @@ EditTree.prototype.cardEditForm = function(datum) {
 
     if (this.datumCallback) {
       if (is_new_rel) {
-        datum["new_rel"] = is_new_rel;
+        datum["new_rel"] = true;
       } else if (props?.delete) {
         datum["delete"] = true;
       }
