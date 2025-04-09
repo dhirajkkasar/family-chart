@@ -23,7 +23,6 @@ function EditTree(cont, store) {
   this.history = null
   this.no_edit = false
   this.no_delete = true
-  this.no_add = true
 
   this.onChange = null
 
@@ -89,7 +88,6 @@ EditTree.prototype.cardEditForm = function(datum) {
 
   form_creator.no_edit = this.no_edit
   form_creator.no_delete = this.no_delete
-  form_creator.no_add = this.no_add
   const form_cont = f3.handlers.formInfoSetup(form_creator, this.closeForm.bind(this))
 
   this.form_cont.innerHTML = ''
@@ -202,18 +200,6 @@ EditTree.prototype.setNoDelete = function() {
 
 EditTree.prototype.setDelete = function() {
   this.no_delete = false
-
-  return this
-}
-
-EditTree.prototype.setNoAdd = function() {
-  this.no_add = true
-
-  return this
-}
-
-EditTree.prototype.setAdd = function() {
-  this.no_add = false
 
   return this
 }
