@@ -2,6 +2,7 @@
   --female-color: rgb(196, 138, 146);
   --male-color: rgb(120, 159, 172);
   --background-color: rgb(33, 33, 33);
+  --deceased-color: rgb(128, 128, 128);
 
   font-family: 'Roboto', sans-serif;
 }
@@ -26,9 +27,13 @@
 .f3 rect.card-male, .f3 .card-male .card-body-rect, .f3 .card-male .text-overflow-mask {
   fill: var(--male-color);
 }
+.f3 rect.card-deceased, .f3 .card-deceased .card-body-rect, .f3 .card-deceased .text-overflow-mask {
+  fill: var(--deceased-color) !important;
+}
 .f3 .card-genderless .card-body-rect, .f3 .card-genderless .text-overflow-mask {
   fill: lightgray;
 }
+
 .f3 .card_add .card-body-rect {
   fill: #3b5560;
   stroke-width: 4px;
@@ -370,6 +375,9 @@
 }
 .f3 div.card-male .card-inner, .f3 div.card-male .person-icon svg {
   background-color: var(--male-color);
+}
+.f3 div.card-deceased .card-inner, .f3 div.card-deceased .person-icon svg {
+  background-color: var(--deceased-color) !important;
 }
 .f3 div.card-genderless .card-inner, .f3 div.card-genderless .person-icon svg {
   background-color: lightgray;

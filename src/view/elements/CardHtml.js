@@ -94,7 +94,8 @@ export function CardHtml(props) {
 
   function getClassList(d) {
     const class_list = []
-    if (d.data.data.gender === 'M') class_list.push('card-male')
+    if (is_person_deceased(d.data)) class_list.push('card-deceased')
+    else if (d.data.data.gender === 'M') class_list.push('card-male')
     else if (d.data.data.gender === 'F') class_list.push('card-female')
     else class_list.push('card-genderless')
 
@@ -135,5 +136,13 @@ export function CardHtml(props) {
   function noImageIcon(d) {
     if (d.data._new_rel_data) return `<div class="person-icon" ${getCardImageStyle()}>${plusSvgIcon()}</div>`
     return `<div class="person-icon" ${getCardImageStyle()}>${personSvgIcon()}</div>`
+  }
+
+  function is_person_deceased(data) {
+    return data?.data?.deceased ||
+        data?.data?.deceased === 'Y' ||
+        data?.data?.death_year ||
+        data?.data?.death_place ||
+        data?.data?.date_of_death
   }
 }
