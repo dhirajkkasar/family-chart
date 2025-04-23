@@ -142,7 +142,10 @@ export function CardHtml(props) {
     return data?.data?.deceased ||
         data?.data?.deceased === 'Y' ||
         data?.data?.death_year ||
+        data?.data?.deathYear ||
         data?.data?.death_place ||
-        data?.data?.date_of_death
+        data?.data?.deathPlace ||
+        data?.data?.date_of_death ||
+        data?.data?.dateOfDeath
   }
 }
